@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace QuartzCronBuilder.Models
 {
     public class CronField
     {
-        protected readonly List<char> allowedTokens;
-
         public string CronExpression { get; protected set; }
 
         public bool IsMandatory { get; protected set; }
@@ -22,7 +19,6 @@ namespace QuartzCronBuilder.Models
             this.MinValue = 0;
             this.MaxValue = 59;
             this.CronExpression = "0";
-            this.allowedTokens = new List<char> { ',', '-', '*', '/' };
         }
 
         public void AllValues()
@@ -35,7 +31,7 @@ namespace QuartzCronBuilder.Models
             this.CronExpression = $"{from}-{to}";
         }
 
-        public void RunEveryXYears(int interval)
+        public void RunEveryXInterval(int interval)
         {
             this.CronExpression = $"*/{interval}";
         }

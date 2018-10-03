@@ -2,47 +2,37 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class MonthExpressionBuilder
+    public class MonthExpressionBuilder : ExpressionBuilder<MonthField, DayOfTheWeekExpressionBuilder>
     {
-        private readonly DayOfTheWeekExpressionBuilder dayOfTheWeekExpressionBuilder;
-        private readonly MonthField monthField;
-
         public MonthExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.monthField = new MonthField();
-            this.dayOfTheWeekExpressionBuilder = new DayOfTheWeekExpressionBuilder(cronExpressionBuilder);
+            this.field = new MonthField();
+            this.expressionBuilder = new DayOfTheWeekExpressionBuilder(cronExpressionBuilder);
         }
 
         public DayOfTheWeekExpressionBuilder AllMonths()
         {
-            this.monthField.AllValues();
-            return this.dayOfTheWeekExpressionBuilder;
+            return base.All();
         }
-
-        public string BuildCronExpression() => $"{this.monthField.CronExpression} {this.dayOfTheWeekExpressionBuilder.BuildCronExpression()}";
 
         public DayOfTheWeekExpressionBuilder RangeOfMonths(int from, int to)
         {
-            this.monthField.RangeOfValues(from, to);
-            return this.dayOfTheWeekExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public DayOfTheWeekExpressionBuilder RunEveryXMonths(int interval)
         {
-            this.monthField.RunEveryXYears(interval);
-            return this.dayOfTheWeekExpressionBuilder;
+            return base.RunEveryXInterval(interval);
         }
 
         public DayOfTheWeekExpressionBuilder RunInMonthsIncrements(int startingValue, int increment)
         {
-            this.monthField.RunInIncrements(startingValue, increment);
-            return this.dayOfTheWeekExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public DayOfTheWeekExpressionBuilder SpecificMonths(params int[] seconds)
+        public DayOfTheWeekExpressionBuilder SpecificMonths(params int[] values)
         {
-            this.monthField.SpecificValues(seconds);
-            return this.dayOfTheWeekExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }

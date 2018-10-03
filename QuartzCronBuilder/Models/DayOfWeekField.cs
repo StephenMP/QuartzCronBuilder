@@ -7,7 +7,6 @@ namespace QuartzCronBuilder.Models
     {
         public DayOfWeekField() : base()
         {
-            this.allowedTokens.AddRange(new char[] { '?', 'L', '#' });
             this.MinValue = 1;
             this.MaxValue = 7;
         }

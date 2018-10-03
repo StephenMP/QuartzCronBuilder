@@ -5,7 +5,7 @@ namespace QuartzCronBuilder.Tests.Builders
 {
     public class YearExpressionBuilderFeatures
     {
-        private YearExpressionBuilderSteps steps;
+        private readonly YearExpressionBuilderSteps steps;
         private Random random;
 
         public YearExpressionBuilderFeatures()

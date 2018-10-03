@@ -2,47 +2,39 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class YearExpressionBuilder
+    public class YearExpressionBuilder : ExpressionBuilder<YearField, CronExpressionBuilder>
     {
-        private readonly CronExpressionBuilder cronExpressionBuilder;
-        private readonly YearField yearField;
-
         public YearExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.yearField = new YearField();
-            this.cronExpressionBuilder = cronExpressionBuilder;
+            this.field = new YearField();
+            this.expressionBuilder = cronExpressionBuilder;
         }
 
         public CronExpressionBuilder AllYears()
         {
-            this.yearField.AllValues();
-            return this.cronExpressionBuilder;
+            return base.All();
         }
 
-        public string BuildCronExpression() => this.yearField.CronExpression;
+        public override string BuildCronExpression() => this.field.CronExpression;
 
         public CronExpressionBuilder RangeOfYears(int from, int to)
         {
-            this.yearField.RangeOfValues(from, to);
-            return this.cronExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public CronExpressionBuilder RunEveryXYears(int interval)
         {
-            this.yearField.RunEveryXYears(interval);
-            return this.cronExpressionBuilder;
+            return base.RunEveryXInterval(interval);
         }
 
         public CronExpressionBuilder RunInYearsIncrements(int startingValue, int increment)
         {
-            this.yearField.RunInIncrements(startingValue, increment);
-            return this.cronExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public CronExpressionBuilder SpecificYears(params int[] years)
+        public CronExpressionBuilder SpecificYears(params int[] values)
         {
-            this.yearField.SpecificValues(years);
-            return this.cronExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }

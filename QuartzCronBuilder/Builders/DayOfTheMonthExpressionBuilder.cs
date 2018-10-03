@@ -2,59 +2,50 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class DayOfTheMonthExpressionBuilder
+    public class DayOfTheMonthExpressionBuilder : ExpressionBuilder<DayOfMonthField, MonthExpressionBuilder>
     {
-        private readonly DayOfMonthField dayOfMonthField;
-        private readonly MonthExpressionBuilder monthExpressionBuilder;
-
         public DayOfTheMonthExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.dayOfMonthField = new DayOfMonthField();
-            this.monthExpressionBuilder = new MonthExpressionBuilder(cronExpressionBuilder);
+            this.field = new DayOfMonthField();
+            this.expressionBuilder = new MonthExpressionBuilder(cronExpressionBuilder);
         }
 
         public MonthExpressionBuilder AllDaysOfTheMonth()
         {
-            this.dayOfMonthField.AllValues();
-            return this.monthExpressionBuilder;
+            return base.All();
         }
-
-        public string BuildCronExpression() => $"{this.dayOfMonthField.CronExpression} {this.monthExpressionBuilder.BuildCronExpression()}";
 
         public MonthExpressionBuilder LastDayOfTheMonth()
         {
-            this.dayOfMonthField.Last();
-            return this.monthExpressionBuilder;
+            this.field.Last();
+            return this.expressionBuilder;
         }
 
         public MonthExpressionBuilder NoSpecificDaysOfTheMonth()
         {
-            this.dayOfMonthField.NoSpecificValue();
-            return this.monthExpressionBuilder;
+            this.field.NoSpecificValue();
+            return this.expressionBuilder;
         }
 
         public MonthExpressionBuilder RangeOfDaysOfTheMonth(int from, int to)
         {
-            this.dayOfMonthField.RangeOfValues(from, to);
-            return this.monthExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public MonthExpressionBuilder RunInDaysOfTheMonthIncrements(int startingValue, int increment)
         {
-            this.dayOfMonthField.RunInIncrements(startingValue, increment);
-            return this.monthExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public MonthExpressionBuilder SpecificDaysOfTheMonth(params int[] seconds)
+        public MonthExpressionBuilder SpecificDaysOfTheMonth(params int[] values)
         {
-            this.dayOfMonthField.SpecificValues(seconds);
-            return this.monthExpressionBuilder;
+            return base.Specific(values);
         }
 
         public MonthExpressionBuilder WeekdaysOnly()
         {
-            this.dayOfMonthField.WeekdaysOnly();
-            return this.monthExpressionBuilder;
+            this.field.WeekdaysOnly();
+            return this.expressionBuilder;
         }
     }
 }

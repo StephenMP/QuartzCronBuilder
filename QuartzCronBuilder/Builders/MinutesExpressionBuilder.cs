@@ -2,47 +2,37 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class MinutesExpressionBuilder
+    public class MinutesExpressionBuilder : ExpressionBuilder<MinutesField, HoursExpressionBuilder>
     {
-        private readonly HoursExpressionBuilder hoursExpressionBuilder;
-        private readonly MinutesField minutesField;
-
         public MinutesExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.minutesField = new MinutesField();
-            this.hoursExpressionBuilder = new HoursExpressionBuilder(cronExpressionBuilder);
+            this.field = new MinutesField();
+            this.expressionBuilder = new HoursExpressionBuilder(cronExpressionBuilder);
         }
 
         public HoursExpressionBuilder AllMinutes()
         {
-            this.minutesField.AllValues();
-            return this.hoursExpressionBuilder;
+            return base.All();
         }
-
-        public string BuildCronExpression() => $"{this.minutesField.CronExpression} {this.hoursExpressionBuilder.BuildCronExpression()}";
 
         public HoursExpressionBuilder RangeOfMinutes(int from, int to)
         {
-            this.minutesField.RangeOfValues(from, to);
-            return this.hoursExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public HoursExpressionBuilder RunEveryXMinutes(int interval)
         {
-            this.minutesField.RunEveryXYears(interval);
-            return this.hoursExpressionBuilder;
+            return base.RunEveryXInterval(interval);
         }
 
         public HoursExpressionBuilder RunInMinuteIncrements(int startingValue, int increment)
         {
-            this.minutesField.RunInIncrements(startingValue, increment);
-            return this.hoursExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public HoursExpressionBuilder SpecificMinutes(params int[] seconds)
+        public HoursExpressionBuilder SpecificMinutes(params int[] values)
         {
-            this.minutesField.SpecificValues(seconds);
-            return this.hoursExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }

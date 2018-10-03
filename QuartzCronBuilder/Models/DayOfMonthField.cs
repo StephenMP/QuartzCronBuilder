@@ -4,7 +4,6 @@
     {
         public DayOfMonthField() : base()
         {
-            this.allowedTokens.AddRange(new char[] { '?', 'L', 'W' });
             this.MinValue = 1;
             this.MaxValue = 31;
         }

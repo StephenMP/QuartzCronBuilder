@@ -6,11 +6,11 @@ namespace QuartzCronBuilder.Tests.Builders
     internal class YearExpressionBuilderSteps : ExpressionBuilderSteps
     {
         private CronExpressionBuilder cronExpressionBuilder;
-        private YearExpressionBuilder yearExpressBuilder;
+        private YearExpressionBuilder yearExpressionBuilder;
 
         public YearExpressionBuilderSteps()
         {
-            base.Initialize(() => this.yearExpressBuilder.BuildCronExpression());
+            base.Initialize(() => this.yearExpressionBuilder.BuildCronExpression());
         }
 
         internal void GivenIHaveACronExpressionBuilder()
@@ -20,22 +20,22 @@ namespace QuartzCronBuilder.Tests.Builders
 
         internal void WhenICreateANewYearExpressionBuilder()
         {
-            this.yearExpressBuilder = new YearExpressionBuilder(this.cronExpressionBuilder);
+            this.yearExpressionBuilder = new YearExpressionBuilder(this.cronExpressionBuilder);
         }
 
         internal void ThenTheYearExpressionBuilderShouldNotBeNull()
         {
-            Assert.NotNull(this.yearExpressBuilder);
+            Assert.NotNull(this.yearExpressionBuilder);
         }
 
         internal void WhenISelectRangeOfYears(int from, int to)
         {
-            this.yearExpressBuilder.RangeOfYears(from, to);
+            this.yearExpressionBuilder.RangeOfYears(from, to);
         }
 
         internal void WhenISelectAllYears()
         {
-            this.yearExpressBuilder.AllYears();
+            this.yearExpressionBuilder.AllYears();
         }
 
         internal void GivenIHaveAYearExpressionBuilder()
@@ -46,22 +46,22 @@ namespace QuartzCronBuilder.Tests.Builders
 
         internal void WhenISelectEveryXYears(int interval)
         {
-            this.yearExpressBuilder.RunEveryXYears(interval);
+            this.yearExpressionBuilder.RunEveryXYears(interval);
         }
 
         internal void WhenISelectRunInYearsIncrements(int startingValue, int increment)
         {
-            this.yearExpressBuilder.RunInYearsIncrements(startingValue, increment);
+            this.yearExpressionBuilder.RunInYearsIncrements(startingValue, increment);
         }
 
         internal void WhenISelectSpecificYears(int[] specificYears)
         {
-            this.yearExpressBuilder.SpecificYears(specificYears);
+            this.yearExpressionBuilder.SpecificYears(specificYears);
         }
 
         internal void WhenISelectSpecificYearsAction(int[] specificYears)
         {
-            this.testCode = () => this.yearExpressBuilder.SpecificYears(specificYears);
+            this.testCode = () => this.yearExpressionBuilder.SpecificYears(specificYears);
         }
     }
 }

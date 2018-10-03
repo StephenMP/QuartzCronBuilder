@@ -2,59 +2,51 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class DayOfTheWeekExpressionBuilder
+    public class DayOfTheWeekExpressionBuilder : ExpressionBuilder<DayOfWeekField, YearExpressionBuilder>
     {
-        private readonly DayOfWeekField dayOfWeekField;
-        private readonly YearExpressionBuilder yearExpressionBuilder;
-
         public DayOfTheWeekExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.dayOfWeekField = new DayOfWeekField();
-            this.yearExpressionBuilder = new YearExpressionBuilder(cronExpressionBuilder);
+            this.field = new DayOfWeekField();
+            this.expressionBuilder = new YearExpressionBuilder(cronExpressionBuilder);
         }
 
         public YearExpressionBuilder AllDaysOfTheWeek()
         {
-            this.dayOfWeekField.AllValues();
-            return this.yearExpressionBuilder;
+            this.field.AllValues();
+            return this.expressionBuilder;
         }
-
-        public string BuildCronExpression() => $"{this.dayOfWeekField.CronExpression} {this.yearExpressionBuilder.BuildCronExpression()}";
 
         public YearExpressionBuilder LastDaysOfTheWeek()
         {
-            this.dayOfWeekField.Last();
-            return this.yearExpressionBuilder;
+            this.field.Last();
+            return this.expressionBuilder;
         }
 
         public YearExpressionBuilder NoSpecificDaysOfTheWeek()
         {
-            this.dayOfWeekField.NoSpecificValue();
-            return this.yearExpressionBuilder;
+            this.field.NoSpecificValue();
+            return this.expressionBuilder;
         }
 
         public YearExpressionBuilder NthDayOfMonth(int dayOfWeek, int weekNumber)
         {
-            this.dayOfWeekField.NthDayOfMonth(dayOfWeek, weekNumber);
-            return this.yearExpressionBuilder;
+            this.field.NthDayOfMonth(dayOfWeek, weekNumber);
+            return this.expressionBuilder;
         }
 
         public YearExpressionBuilder RangeOfDaysOfTheWeek(int from, int to)
         {
-            this.dayOfWeekField.RangeOfValues(from, to);
-            return this.yearExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public YearExpressionBuilder RunInDaysOfTheWeekIncrements(int startingValue, int increment)
         {
-            this.dayOfWeekField.RunInIncrements(startingValue, increment);
-            return this.yearExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public YearExpressionBuilder SpecificDaysOfTheWeek(params int[] seconds)
+        public YearExpressionBuilder SpecificDaysOfTheWeek(params int[] values)
         {
-            this.dayOfWeekField.SpecificValues(seconds);
-            return this.yearExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }

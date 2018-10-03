@@ -3,7 +3,7 @@ using Xunit;
 
 namespace QuartzCronBuilder.Tests.Builders
 {
-    internal class ExpressionBuilderSteps
+    internal abstract class ExpressionBuilderSteps
     {
         private Func<string> buildCronExpressionFunc;
         protected Action testCode;

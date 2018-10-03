@@ -2,47 +2,37 @@
 
 namespace QuartzCronBuilder.Builders
 {
-    public class HoursExpressionBuilder
+    public class HoursExpressionBuilder : ExpressionBuilder<HoursField, DayOfTheMonthExpressionBuilder>
     {
-        private readonly DayOfTheMonthExpressionBuilder dayOfTheMonthExpressionBuilder;
-        private readonly HoursField hoursField;
-
         public HoursExpressionBuilder(CronExpressionBuilder cronExpressionBuilder)
         {
-            this.hoursField = new HoursField();
-            this.dayOfTheMonthExpressionBuilder = new DayOfTheMonthExpressionBuilder(cronExpressionBuilder);
+            this.field = new HoursField();
+            this.expressionBuilder = new DayOfTheMonthExpressionBuilder(cronExpressionBuilder);
         }
 
         public DayOfTheMonthExpressionBuilder AllHours()
         {
-            this.hoursField.AllValues();
-            return this.dayOfTheMonthExpressionBuilder;
+            return base.All();
         }
-
-        public string BuildCronExpression() => $"{this.hoursField.CronExpression} {this.dayOfTheMonthExpressionBuilder.BuildCronExpression()}";
 
         public DayOfTheMonthExpressionBuilder RangeOfHours(int from, int to)
         {
-            this.hoursField.RangeOfValues(from, to);
-            return this.dayOfTheMonthExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public DayOfTheMonthExpressionBuilder RunEveryXHours(int interval)
         {
-            this.hoursField.RunEveryXYears(interval);
-            return this.dayOfTheMonthExpressionBuilder;
+            return base.RunEveryXInterval(interval);
         }
 
         public DayOfTheMonthExpressionBuilder RunInHourIncrements(int startingValue, int increment)
         {
-            this.hoursField.RunInIncrements(startingValue, increment);
-            return this.dayOfTheMonthExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public DayOfTheMonthExpressionBuilder SpecificHours(params int[] seconds)
+        public DayOfTheMonthExpressionBuilder SpecificHours(params int[] values)
         {
-            this.hoursField.SpecificValues(seconds);
-            return this.dayOfTheMonthExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }

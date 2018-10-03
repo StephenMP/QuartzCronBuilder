@@ -3,43 +3,34 @@ using QuartzCronBuilder.Models;
 
 namespace QuartzCronBuilder
 {
-    public class CronExpressionBuilder
+    public class CronExpressionBuilder : ExpressionBuilder<SecondsField, MinutesExpressionBuilder>
     {
-        private readonly MinutesExpressionBuilder minutesExpressionBuilder;
-        private readonly SecondsField secondsField;
-
         public CronExpressionBuilder()
         {
-            this.secondsField = new SecondsField();
-            this.minutesExpressionBuilder = new MinutesExpressionBuilder(this);
+            this.field = new SecondsField();
+            this.expressionBuilder = new MinutesExpressionBuilder(this);
         }
 
         public static CronExpressionBuilder NewExpression() => new CronExpressionBuilder();
 
         public MinutesExpressionBuilder AllSeconds()
         {
-            this.secondsField.AllValues();
-            return this.minutesExpressionBuilder;
+            return base.All();
         }
-
-        public string BuildCronExpression() => $"{this.secondsField.CronExpression} {this.minutesExpressionBuilder.BuildCronExpression()}".Trim();
 
         public MinutesExpressionBuilder RangeOfSeconds(int from, int to)
         {
-            this.secondsField.RangeOfValues(from, to);
-            return this.minutesExpressionBuilder;
+            return base.RangeOf(from, to);
         }
 
         public MinutesExpressionBuilder RunInSecondIncrements(int startingValue, int increment)
         {
-            this.secondsField.RunInIncrements(startingValue, increment);
-            return this.minutesExpressionBuilder;
+            return base.RunInIncrements(startingValue, increment);
         }
 
-        public MinutesExpressionBuilder SpecificSeconds(params int[] seconds)
+        public MinutesExpressionBuilder SpecificSeconds(params int[] values)
         {
-            this.secondsField.SpecificValues(seconds);
-            return this.minutesExpressionBuilder;
+            return base.Specific(values);
         }
     }
 }
