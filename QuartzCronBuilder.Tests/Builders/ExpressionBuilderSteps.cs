@@ -6,6 +6,7 @@ namespace QuartzCronBuilder.Tests.Builders
     internal class ExpressionBuilderSteps
     {
         private Func<string> buildCronExpressionFunc;
+        protected Action testCode;
 
         protected void Initialize(Func<string> buildCronExpressionFunc)
         {
@@ -41,6 +42,16 @@ namespace QuartzCronBuilder.Tests.Builders
             var actualResult = this.buildCronExpressionFunc();
             var values = string.Join(",", specificValues);
             Assert.Equal(values, actualResult);
+        }
+
+        public void ThenIShouldThrow<TException>(string message = null) where TException : Exception
+        {
+            var exception = Assert.Throws<TException>(this.testCode);
+
+            if (!string.IsNullOrWhiteSpace(message))
+            {
+                Assert.Equal(message, exception.Message);
+            }
         }
     }
 }

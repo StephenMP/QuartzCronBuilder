@@ -101,5 +101,34 @@ namespace QuartzCronBuilder.Tests.Builders
                 this.steps.ThenIShouldReceiveTheSpecificValues(specificYears);
             }
         }
+
+        [Fact]
+        public void CannotSelectSpecificYearsOutsideAllowedValues()
+        {
+            this.steps.GivenIHaveAYearExpressionBuilder();
+
+            for (var i = 0; i < 10; i++)
+            {
+                var numberOfValues = this.random.Next(1, 51);
+                var specificYears = new int[numberOfValues];
+                for (var j = 0; j < numberOfValues; j++)
+                {
+                    specificYears[j] = random.Next(int.MinValue, 1970);
+                }
+
+                this.steps.WhenISelectSpecificYearsAction(specificYears);
+
+                this.steps.ThenIShouldThrow<ArgumentException>("You provided invalid values for the cron expression!");
+
+                for (var j = 0; j < numberOfValues; j++)
+                {
+                    specificYears[j] = random.Next(2100, int.MaxValue);
+                }
+
+                this.steps.WhenISelectSpecificYearsAction(specificYears);
+
+                this.steps.ThenIShouldThrow<ArgumentException>("You provided invalid values for the cron expression!");
+            }
+        }
     }
 }

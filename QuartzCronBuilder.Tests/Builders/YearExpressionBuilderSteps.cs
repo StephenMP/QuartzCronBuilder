@@ -58,5 +58,10 @@ namespace QuartzCronBuilder.Tests.Builders
         {
             this.yearExpressBuilder.SpecificYears(specificYears);
         }
+
+        internal void WhenISelectSpecificYearsAction(int[] specificYears)
+        {
+            this.testCode = () => this.yearExpressBuilder.SpecificYears(specificYears);
+        }
     }
 }
