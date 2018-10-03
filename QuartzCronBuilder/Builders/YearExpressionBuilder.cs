@@ -29,7 +29,7 @@ namespace QuartzCronBuilder.Builders
 
         public CronExpressionBuilder RunEveryXYears(int interval)
         {
-            this.yearField.RunEveryXMinutes(interval);
+            this.yearField.RunEveryXYears(interval);
             return this.cronExpressionBuilder;
         }
 
@@ -39,9 +39,9 @@ namespace QuartzCronBuilder.Builders
             return this.cronExpressionBuilder;
         }
 
-        public CronExpressionBuilder SpecificYears(params int[] seconds)
+        public CronExpressionBuilder SpecificYears(params int[] years)
         {
-            this.yearField.SpecificValues(seconds);
+            this.yearField.SpecificValues(years);
             return this.cronExpressionBuilder;
         }
     }

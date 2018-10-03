@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzCronBuilder", "QuartzCronBuilder\QuartzCronBuilder.csproj", "{4477C432-2B4C-450B-B91A-13F7E5A2E1FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzCronBuilder.Tests", "QuartzCronBuilder.Tests\QuartzCronBuilder.Tests.csproj", "{CA4C8279-33B5-4BF8-B446-68F85C8F42F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4477C432-2B4C-450B-B91A-13F7E5A2E1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4477C432-2B4C-450B-B91A-13F7E5A2E1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4477C432-2B4C-450B-B91A-13F7E5A2E1FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4C8279-33B5-4BF8-B446-68F85C8F42F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4C8279-33B5-4BF8-B446-68F85C8F42F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4C8279-33B5-4BF8-B446-68F85C8F42F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4C8279-33B5-4BF8-B446-68F85C8F42F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

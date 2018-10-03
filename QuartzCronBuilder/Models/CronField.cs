@@ -35,7 +35,7 @@ namespace QuartzCronBuilder.Models
             this.CronExpression = $"{from}-{to}";
         }
 
-        public void RunEveryXMinutes(int interval)
+        public void RunEveryXYears(int interval)
         {
             this.CronExpression = $"*/{interval}";
         }

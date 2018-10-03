@@ -29,7 +29,7 @@ namespace QuartzCronBuilder.Builders
 
         public HoursExpressionBuilder RunEveryXMinutes(int interval)
         {
-            this.minutesField.RunEveryXMinutes(interval);
+            this.minutesField.RunEveryXYears(interval);
             return this.hoursExpressionBuilder;
         }
 

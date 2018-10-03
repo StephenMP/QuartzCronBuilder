@@ -29,7 +29,7 @@ namespace QuartzCronBuilder.Builders
 
         public DayOfTheWeekExpressionBuilder RunEveryXMonths(int interval)
         {
-            this.monthField.RunEveryXMinutes(interval);
+            this.monthField.RunEveryXYears(interval);
             return this.dayOfTheWeekExpressionBuilder;
         }
 
